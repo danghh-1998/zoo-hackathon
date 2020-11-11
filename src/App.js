@@ -10,6 +10,7 @@ import Footer from "./components/footer";
 import CardGrid from "./components/card-grid";
 import {Router, Switch, Route} from 'react-router-dom';
 import {createBrowserHistory} from 'history'
+import Guidance from "./components/guidance";
 
 const history = createBrowserHistory();
 
@@ -23,7 +24,7 @@ function App() {
                     <CardGrid/>
                 </Route>
                 <Route path="/huong-dan">
-                    <CardGrid/>
+                    <Guidance />
                 </Route>
             </Switch>
             <Footer/>

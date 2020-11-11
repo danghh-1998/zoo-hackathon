@@ -9,6 +9,9 @@ import FormControl from 'react-bootstrap/cjs/FormControl';
 import Button from 'react-bootstrap/cjs/Button';
 import SpeciesCard from "./species-card";
 import '../styles/card-grid.css'
+import logo from '../resources/logo.png'
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faSearch} from "@fortawesome/free-solid-svg-icons/faSearch";
 
 class CardGrid extends React.Component {
     constructor(props) {
@@ -17,7 +20,7 @@ class CardGrid extends React.Component {
         let chunks = [];
         let i = 0
         while (i < species.length) {
-            chunks.push(species.slice(i, i += 12))
+            chunks.push(species.slice(i, i += 8))
         }
         this.state = {
             species: species,
@@ -49,8 +52,15 @@ class CardGrid extends React.Component {
     render() {
         return (
             <>
-                <Container className='search-box'>
-                    <InputGroup className="mb-3">
+                <Container className='search-box' style={{marginTop: '20px'}}>
+                    <img src={logo} alt="" style={{
+                        position: 'relative',
+                        left: '400px',
+                        width: '350px',
+                        height: 'auto',
+                        marginBottom: '20px'
+                    }}/>
+                    <InputGroup className="mb-3" size='lg'>
                         <FormControl
                             placeholder="Nhập tên loài vật"
                             aria-label="Nhập tên loài vật"
@@ -62,7 +72,7 @@ class CardGrid extends React.Component {
                                 let chunks = [];
                                 let i = 0;
                                 while (i < filteredSpecies.length) {
-                                    chunks.push(filteredSpecies.slice(i, i += 12))
+                                    chunks.push(filteredSpecies.slice(i, i += 8))
                                 }
                                 this.setState({
                                     chunks: chunks
@@ -70,19 +80,21 @@ class CardGrid extends React.Component {
                             }}
                         />
                         <InputGroup.Append>
-                            <Button variant="primary">Tìm kiếm</Button>
+                            <Button variant="primary">
+                                <FontAwesomeIcon icon={faSearch} />
+                            </Button>
                         </InputGroup.Append>
                     </InputGroup>
                 </Container>
                 <Carousel interval={null} fade={true} className="card-grid">
                     {
                         this.state.chunks.map((chunk, index) => {
-                            return <Carousel.Item key={index}>
+                            return <Carousel.Item key={Math.floor(Math.random() * 100)}>
                                 <Container>
                                     <Row>
                                         {
-                                            chunk.map((item, idx) => {
-                                                return <Col md={3} key={idx}>
+                                            chunk.map(item => {
+                                                return <Col md={3} key={Math.floor(Math.random() * 100)}>
                                                     <SpeciesCard obj={item}/>
                                                 </Col>
                                             })

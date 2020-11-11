@@ -15,9 +15,8 @@ img {
 }
 
 .modal-img {
-    width: 300px;
+    width: 500px;
     height: auto;
     object-fit: cover;
-    float: right;
     margin-left: 20px;
 }
