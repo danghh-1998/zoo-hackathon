@@ -1,25 +1,36 @@
-import logo from './logo.svg';
+import React from "react";
+
 import './App.css';
+import Background from "./components/background";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {library} from '@fortawesome/fontawesome-svg-core'
+import {fas} from '@fortawesome/free-solid-svg-icons'
+import TransparentNavBar from "./components/tranparent-navbar";
+import Footer from "./components/footer";
+import CardGrid from "./components/card-grid";
+import {Router, Switch, Route} from 'react-router-dom';
+import {createBrowserHistory} from 'history'
+
+const history = createBrowserHistory();
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <Router history={history}>
+            <Background/>
+            <TransparentNavBar/>
+            <Switch>
+                <Route exact path="/">
+                    <CardGrid/>
+                </Route>
+                <Route path="/huong-dan">
+                    <CardGrid/>
+                </Route>
+            </Switch>
+            <Footer/>
+        </Router>
+    );
 }
+
+library.add(fas)
 
 export default App;
